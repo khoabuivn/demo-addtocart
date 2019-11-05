@@ -12,6 +12,8 @@ import {
   Container
 } from "reactstrap";
 
+import { CartContext } from '../contexts/Cart';
+
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -179,7 +181,10 @@ class Products extends Component {
                 <CardBody>
                   <CardTitle>{product.name}</CardTitle>
                   <CardText>{product.description}</CardText>
-                  <Button>Add to cart</Button>
+                  <CartContext.Consumer>
+                    {({ addToCart }) => <Button onClick={() => addToCart(product)}>Add to cart</Button>}
+                    
+                  </CartContext.Consumer>
                 </CardBody>
               </Card>
             </Col>
